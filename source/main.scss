@@ -1,0 +1,182 @@
+
+@use '../source/config/cores.scss';
+@use 'secoes/produtos';
+@use '../source/config/reset.scss';
+@use '../source/config/variaveis.scss';
+@use 'sass:math';
+
+body {
+    background-color: cores.$corDeFundo;
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #182C61;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+}
+
+.menu {
+    display: flex;
+}
+
+.menu li {
+    font-weight: bold;
+    margin-left: 24px;
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+section {
+    padding: 56px 0;
+}
+
+.products {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 32.66%);
+    column-gap: 1%;
+    row-gap: 4%;
+    width: 100%;
+}
+
+.product-item img {
+    width: 100%;
+    border-radius: 16px;
+}
+
+.product-button {
+    display: block;
+    background-color: #44bd32;
+    color: #fff;
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 8px;
+    margin-top: 8px;
+    text-decoration: none;
+}
+
+.product-button:hover {
+    background-color: #4cd137;
+}
+
+@media screen and (max-width: 1023px) {
+    .container {
+        max-width: 80%;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, 48.5%);
+        column-gap: 3%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .products {
+        display: block;
+    }
+
+    .product-item  {
+        margin-bottom: 32px;
+    }
+}
+
+@mixin elementoForm($margin: 16px) {
+    padding: 8px;
+    display: block;
+    width: 100%;
+    margin-bottom: $margin;
+}
+
+@function pixelParaEm($alvoEmPixel, $contextoEmPixel: 16px) {
+    @return math.div($alvoEmPixel, $contextoEmPixel)+em;
+}
+
+body {
+    background-color: #eee;
+}
+
+.container {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+header {
+    padding: 16px 0;
+    background-color: variaveis.$corPrincipal;
+    text-align: center;
+    color: #fff;
+}
+
+.form-container {
+    height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 760px;
+
+    h2 {
+        font-size: pixelParaEm(48px);
+        text-align: center;
+    }
+
+    form {
+        width: 100%;
+        max-width: 480px;
+        margin-top: 40px;
+
+        label {
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        input {
+            @include elementoForm();
+            background-color: transparent;
+            border: none;
+            border-bottom: 3px solid variaveis.$corPrincipal;
+        }
+
+        button {
+            @include elementoForm();
+            background-color: variaveis.$corSecundaria;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+
+            &:hover {
+                background-color: lighten(variaveis.$corSecundaria, 15%);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: variaveis.$mobile) {
+    .container {
+        max-width: 80%;
+    }
+}
